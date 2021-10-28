@@ -17,6 +17,9 @@ function app(people) {
       searchResults = searchByName(people);
       break;
     case "no":
+      //create an if statement to allow user to choose what they want to search by
+      //prompt user and ask what trait they want to search by, list option start with eye color 
+      // based on their response if they enter eye color then it should call the searchByEyeColor()
       // TODO: search by traits
       break;
     default:
@@ -89,11 +92,16 @@ function searchByName(people) {
     }
   });
   // TODO: find the person single person object using the name they entered.
-  return foundPerson;
+  //return displayPeople(foundPerson);
+    return foundPerson[0];
 }
+function searchByOccupation(people) {
 
+}
 //unfinished function to search through an array of people to find matching eye colors. Use searchByName as reference.
-function searchByEyeColor(people) {}
+function searchByEyeColor(people) {
+  
+}
 
 //TODO: add other trait filter functions here.
 
@@ -138,12 +146,8 @@ function displayPerson(person) {
 function promptFor(question, valid) {
   let isValid;
   let response;
-<<<<<<< HEAD
   do {
-=======
-  do {   
->>>>>>> 3a11cb8672b3501c0ceb39504ef6b53499b50463
-    response = prompt(question).trim();
+    response = prompt(question);
     isValid = valid(response);
   } while (response === "" || isValid === false);
   return response;
