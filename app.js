@@ -10,7 +10,7 @@ function app(people) {
   let searchType = promptFor(
     "Do you know the name of the person you are looking for? Enter 'yes' or 'no'",
     yesNo
-  ).toLowerCase();
+  ).toLowerCase(); 
   let searchResults;
   switch (searchType) {
     case "yes":
@@ -33,7 +33,7 @@ function mainMenu(person, people) {
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
 
   if (!person) {
-    alert("Could not find that individual.");
+    alert("Could not find that individual");
     return app(people); // restart
   }
 
@@ -137,8 +137,9 @@ function displayPerson(person) {
 //this function will continue to loop until the user enters something that is not an empty string("") or is considered valid based off the callback function(valid).
 function promptFor(question, valid) {
   let isValid;
-  do {
-    let response = prompt(question).trim();
+  let response;
+  do {   
+    response = prompt(question).trim();
     isValid = valid(response);
   } while (response === "" || isValid === false);
   return response;
