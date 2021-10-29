@@ -17,6 +17,7 @@ function app(people) {
       searchResults = searchByName(people);
       break;
     case "no":
+    searchResults = searchByTraits(people)
       //create an if statement to allow user to choose what they want to search by
       //prompt user and ask what trait they want to search by, list option start with eye color 
       // based on their response if they enter eye color then it should call the searchByEyeColor()
@@ -183,3 +184,34 @@ function autoValid(input) {
 function customValidation(input) {}
 
 //#endregion
+
+function searchByTraits(people) {
+  let foundPeople = people
+  let userInput = prompt ("Which trait would you like to search for? \n 'eye color' \n 'height' \n 'date of birth' \n 'gender' \n 'weight' \n 'occupation'")
+
+  switch (userInput) {
+    case 'eye color':
+      foundPeople = searchByEyeColor(foundPeople)
+      break;
+    case 'height':
+      // people = 
+      break;
+    case 'date of birth':
+      
+      break;
+    case 'gender':
+      
+      break;
+    case 'weight':
+      
+      break;
+    case 'occupation':
+      
+      break;
+  
+    default:
+      break;
+  } 
+
+  return people
+}
