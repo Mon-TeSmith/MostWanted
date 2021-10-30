@@ -190,12 +190,12 @@ function searchByTraits(people) {
   let foundPeople = people
   let searchResults = promptFor("Which trait would you like to search for? \n 'eye color' \n 'height' \n 'date of birth' \n 'gender' \n 'weight' \n 'occupation'", autoValid);
 
-  switch (searchByTraits) {
+  switch (people) {
     case 'eye color': 
-    // execute 
-    if (people) {
+    // execute if statement input for eyeColor is selected
+    if (searchResults = eyeColor) {
       //execute
-      let searchResults = promptFor("Which eye color? \n 'black' \n 'brown' \n 'blue' \n 'hazel' \n 'green'", autoValid);
+      let searchByTraits = promptFor("Which eye color? \n 'black' \n 'brown' \n 'blue' \n 'hazel' \n 'green'", autoValid);
       return true;
     } else {
       return false;
