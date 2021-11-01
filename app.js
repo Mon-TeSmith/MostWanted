@@ -17,6 +17,7 @@ function app(people) {
       searchResults = searchByName(people);
       break;
     case "no":
+    searchResults = searchByTraits(people)
       //create an if statement to allow user to choose what they want to search by
       //prompt user and ask what trait they want to search by, list option start with eye color 
       // based on their response if they enter eye color then it should call the searchByEyeColor()
@@ -102,11 +103,22 @@ function searchByOccupation(people) {
 
 //unfinished function to search through an array of people to find matching eye colors. Use searchByName as reference.
   function searchByEyeColor(people) {
-    let  eyeColor = promptFor("What eye color would you like to search for?", autoValid);
+    let  eyeColor = promptFor("What eye color would you like to search for?");
     let foundPerson = people.filter(function (potentialMatch) {
+<<<<<<< HEAD
       if (potentialMatch.eyeColor === eyeColor) {
         
       }
+=======
+      if (potentialMatch.eyeColor === eyeColor) 
+      {
+        return true 
+       
+        } else {
+          return false; 
+}
+    });
+>>>>>>> e3221b94eae6cc821af169e65068c7a9b39a4a87
     return foundPerson[0];
   },
   function customValidation(eyeColor) {},
@@ -194,3 +206,42 @@ function autoValid(input) {
 function customValidation(input) {}
 
 //#endregion
+
+function searchByTraits(people) {
+  let foundPeople = people
+  let searchResults = promptFor("Which trait would you like to search for? \n 'eye color' \n 'height' \n 'date of birth' \n 'gender' \n 'weight' \n 'occupation'", autoValid);
+
+  switch (people) {
+    case 'eye color': 
+    // execute if statement input for eyeColor is selected
+    if (searchResults = eyeColor) {
+      //execute
+      let searchByTraits = promptFor("Which eye color? \n 'black' \n 'brown' \n 'blue' \n 'hazel' \n 'green'", autoValid);
+      return true;
+    } else {
+      return false;
+      
+    } 
+    break;
+    case 'height':
+      
+      break;
+    case 'date of birth':
+      
+      break;
+    case 'gender':
+      
+      break;
+    case 'weight':
+      
+      break;
+    case 'occupation':
+      
+      break;
+  
+    default:
+      break;
+  } 
+
+
+}
