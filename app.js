@@ -19,6 +19,11 @@ function app(people){
         //create an if statement to allow user to choose what they want to search by
         //prompt user and ask what trait they want to search by, list option start with eye color 
         // based on their response if they enter eye color then it should call the searchByEyeColor()
+       if (searchByTraits) {
+         promptFor ("Which traits would you like to search for? \n height \n dob \n gender \n weight \n occupation \n eye color",autoValid);
+         
+         
+       }
         // TODO: search by traits
         break;
       default:
@@ -107,10 +112,15 @@ function app(people){
         } else {
           return false;
       }
-    }
+    })
     
-  }
   
+    return foundPerson[0]
+  } 
+  function searchByTraits(people) {
+    let searchByEyeColor = people
+    let searchResults = promptFor("Which trait would you like to search for? \n 'eye color' \n 'height' \n 'date of birth' \n 'gender' \n 'weight' \n 'occupation'", autoValid);
+  }
   //TODO: add other trait filter functions here.
   
   //#endregion
@@ -180,4 +190,4 @@ function app(people){
   //can be used for things like eye color validation for example.
   function customValidation(input) {}
   
-  //#endregion
+  //#endregion)
