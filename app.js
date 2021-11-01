@@ -104,14 +104,25 @@ function searchByOccupation(people) {
   function searchByEyeColor(people) {
     let  eyeColor = promptFor("What eye color would you like to search for?", autoValid);
     let foundPerson = people.filter(function (potentialMatch) {
-      if (potentialMatch.eyeColor === eyeColor) 
-      {
-        return true 
-        } else {
-          return false; 
-}
-    });
+      if (potentialMatch.eyeColor === eyeColor) {
+        
+      }
     return foundPerson[0];
+  },
+  function customValidation(eyeColor) {},
+  switch (foundPerson) {
+    case eyeColor = "blue":
+      break;
+   case eyeColor = "brown":
+     break;
+     case eyeColor = "black":
+      break;
+      case eyeColor = "hazel":
+       break;
+       case eyeColor = "green":
+
+    default: eyeColor = "invalid eye color";
+      return mainMenu(person, people)
   }
 //TODO: add other trait filter functions here.
 
