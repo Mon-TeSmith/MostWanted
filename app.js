@@ -8,7 +8,7 @@
 function app(people){
     let searchType = promptFor(
       "Do you know the name of the person you are looking for? Enter 'Yes' or 'No'",
-      yes,No
+      yesNo
     ).toLowerCase(); 
     let searchResults;
     switch (searchType) {
@@ -16,32 +16,46 @@ function app(people){
         searchResults = searchByName(person);
         break;
       case "no":
-      searchResults = searchByTraits(people);
-
+      searchResults = searchByEyeColor(people);
+      searchResults = searchByOccupation(searchResults); 
+      searchResults = searchByGender(searchResults); 
+      searchResults = searchByDob(searchResults);
+      searchResults = searchByHeight(searchResults);
+      searchResults = searchByWeight(searchResults);
+      break;
+    default:
+      app(people); // restart app
+      break;
+    };
+      
         //create an if statement to allow user to choose what they want to search by
         //prompt user and ask what trait they want to search by, list option start with eye color 
         // based on their response if they enter eye color then it should call the searchByEyeColor()
       
-        
-       function searchByTraits(_people) {
-         promptFor ( "Which traits would you like to search for? \n Height \n D.O.B. \n Gender \n Weight \n Occupation \n Eye Color", autoValid);
-      callback();
-        }
-         // TODO: search by traits
-       break;
-      default:
-        app(people); // restart app
-        break;
-    }
+    displayPeople(searchResults);
+    alert("Please select your individual:" + "\n");
+    return searchByName (results);
+  }
+
+
+//     function searchByTraits(_people) {
+//       promptFor ( "Which traits would you like to search for? \n Height \n D.O.B. \n Gender \n Weight \n Occupation \n Eye Color", autoValid);
+//       callback();
+//         }
+//       // TODO: search by traits
+//       break;
+//         default:
+//           app(people); // restart app
+//         break;
+    
   
-    // Call the mainMenu function ONLY after you find the SINGLE person you are looking for
-    mainMenu(searchResults, people);
-}
+//     // Call the mainMenu function ONLY after you find the SINGLE person you are looking for
+//     mainMenu(searchResults, people);
+// }
  
   // Menu function to call once you find who you are looking for
   function mainMenu(person, people) {
     /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
-  
     if (!person) {
       alert("Could not find the individual");
       return app(people); // restart
@@ -49,22 +63,22 @@ function app(people){
   
     let displayOption = promptFor(
       "Found " +
-        person.firstName +
+        person[0].firstName +
         " " +
-        person.lastName +
-       (" . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'"),
+        person[0].lastName +
+       " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'",
       autoValid
     );
   
     switch (displayOption) {
       case "info":
-        // TODO: get person's info
+        displayPerson(person, people);
         break;
       case "family":
-        // TODO: get person's family
+        displayFamily(person, people);
         break;
       case "descendants":
-        // TODO: get person's descendants
+        displayDescendants(person, people);
         break;
       case "restart":
         app(people); // restart
@@ -73,7 +87,7 @@ function app(people){
         return; // stop execution
       default:
         return mainMenu(person, people); // ask again
-    };
+    }
   }
   
   //#endregion
@@ -98,20 +112,38 @@ function app(people){
         return false;
       }
     });
-    // TODO: find the person single person object using the name they entered.
-    //return displayPeople(foundPerson);
+  
+      displayPeople(foundPerson);
       return foundPerson[0];
   }
 
-  function searchByTraits(people){
-    // prompt the user for what trait they want to filter by
-    let input = prompt("What trait are you searching for?")
-    let results;
-    switch (input){
-      case ["Gender", "DOB", "Weight", "Height", "Eyecolor", "Occupation", "Parents", "CurrentSpouse"]:
-        results = searchByTraits(people)
-        app("");
+  function searchByTraits(people) {
+    let filteredTraits = promptFor("What trait are you searching by?\n\n" + '1 Gender\n' + '2 DOB\n' + '3 Weight\n' + '4 Eye Color\n' + '5 Occupation\n' + '6 Parents\n' + '7 Current Spouse\n' + '8 Height\n');
+    switch (filteredTraits) {
+      case "1":
+        searchByGender(people);
         break;
+          case "2":
+            searchByDob(people);
+            break;
+            case "3":
+              searchByWeight(people);
+              break;
+              case "4":
+                searchByHeight(people);
+                break;
+                case "5":
+                  searchByEyeColor(people);
+                  break;
+                  case "6":
+                    searchByOccupation(people);
+                    break;
+                    case "7":
+                      searchByParents(people);
+                      break;
+                      case "8":
+                        searchByCurrentSpouse(people);
+                        break;
     
       default:
         app("people");
@@ -120,7 +152,7 @@ function app(people){
   }
 
   function searchByOccupation(people) {
-    let occupation = promptFor("What occupation would you like to search for?", autoValid);
+    let occupation = promptFor("What occupation would you like to search for?", autoValid).toLowerCase()
     let foundPeople = people.filter(function (potentialMatch) {
       if (potentialMatch.occupation === occupation) {
         return true;
@@ -132,7 +164,7 @@ function app(people){
   
   //unfinished function to search through an array of people to find matching eye colors. Use searchByName as reference.
   function searchByEyeColor(people) {
-    let eyeColor = promptFor("What eye color would you like to search for?", autoValid);
+    let eyeColor = promptFor("What eye color would you like to search for?", autoValid).toLowerCase()
     let foundPeople = people.filter(function (potentialMatch) {
       if (potentialMatch.eyeColor === eyeColor){
       return true; 
@@ -142,7 +174,7 @@ function app(people){
 }
 
 function searchGender(people) {
-  let gender = promptFor("What gender would you like to search for?", autoValid);
+  let gender = promptFor("What gender would you like to search for?", autoValid).toLowerCase()
   let foundPeople = people.filter(function (potentialMatch) {
     if (potentialMatch.gender === gender){
     return true; 
@@ -152,7 +184,7 @@ return foundPeople
 }
 
 function searchDOB(people) {
-  let DOB = promptFor("What DOB would you like to search for?", autoValid);
+  let DOB = promptFor("What DOB would you like to search for?", autoValid).toLowerCase()
   let foundPeople = people.filter(function (potentialMatch) {
     if (potentialMatch.DOB === DOB){
     return true; 
@@ -162,7 +194,7 @@ return foundPeople
 }
 
 function searchWeight(people) {
-  let weight = promptFor("What weight would you like to search for?", autoValid);
+  let weight = promptFor("What weight would you like to search for?", autoValid).toLowerCase()
   let foundPeople = people.filter(function (potentialMatch) {
     if (potentialMatch.weight === weight){
     return true; 
@@ -172,7 +204,7 @@ return foundPeople
 }
 
 function searchHeight(people) {
-  let height = promptFor("What height would you like to search for?", autoValid);
+  let height = promptFor("What height would you like to search for?", autoValid).toLowerCase()
   let foundPeople = people.filter(function (potentialMatch) {
     if (potentialMatch.height === height){
     return true; 
@@ -182,7 +214,7 @@ return foundPeople
 }
 
 function searchParents(people) {
-  let parents = promptFor("What parents would you like to search for?", autoValid);
+  let parents = promptFor("What parents would you like to search for?", autoValid).toLowerCase()
   let foundPeople = people.filter(function (potentialMatch) {
     if (potentialMatch.parents === parents){
     return true; 
@@ -192,7 +224,7 @@ return foundPeople
 }
 
 function searchCurrentSpouse(people) {
-  let currentSpouse = promptFor("What current spouse would you like to search for?", autoValid);
+  let currentSpouse = promptFor("What current spouse would you like to search for?", autoValid).toLowerCase()
   let foundPeople = people.filter(function (potentialMatch) {
     if (potentialMatch.currentSpouse === currentSpouse){
     return true; 
@@ -261,12 +293,12 @@ return foundPeople
   
   // helper function to pass in as default promptFor validation.
   //this will always return true for all inputs.
-  function autoValid(input) {
+  function autoValid(filteredTraits) {
     return true; // default validation only
   }
   
   //Unfinished validation function you can use for any of your custom validation callbacks.
   //can be used for things like eye color validation for example.
-  function customValidation(input) {}
+  function customValidation(filteredTraits) {}
   
   //#endregion

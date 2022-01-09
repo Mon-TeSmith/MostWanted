@@ -1,0 +1,20 @@
+{
+  "name": "mostwanted",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": 
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mon-TeSmith/MostWanted.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mon-TeSmith/MostWanted/issues"
+  },
+  "homepage": "https://github.com/Mon-TeSmith/MostWanted#readme"
+}
